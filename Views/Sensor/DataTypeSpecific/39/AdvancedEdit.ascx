@@ -1,0 +1,63 @@
+﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<Monnit.Sensor>" %>
+<% 
+    //purgeclassic
+	Response.Cache.SetExpires(DateTime.UtcNow.AddDays(-1));
+    Response.Cache.SetValidUntilExpires(false);
+    Response.Cache.SetRevalidation(HttpCacheRevalidation.AllCaches);
+    Response.Cache.SetCacheability(HttpCacheability.NoCache);
+    Response.Cache.SetNoStore();
+
+    Dictionary<string, object> dic = new Dictionary<string, object>();
+    if (!Model.CanUpdate)
+    {
+        dic.Add("disabled", "disabled");
+        ViewData["disabled"] = true;
+
+
+    }
+
+    ViewData["HtmlAttributes"] = dic;
+%>
+<form action="/Sensor/AdvancedEdit/<%:Model.SensorID %>" id="simpleEdit_<%:Model.SensorID %>" method="post">
+    <%: Html.ValidationSummary(false) %>
+
+    <div class="formtitle">
+          <span> <%: Model.MonnitApplication.ApplicationName%> Sensor Configuration</span>
+    </div>
+    <div class="formBody">
+        <input type="hidden" value="/Sensor/AdvancedEdit/<%:Model.SensorID %>" name="returns" id="returns" />
+        <table style="width: 100%;">
+            <%--Sensor Name--%>
+            <% Html.RenderPartial("~/Views/Sensor/SensorEdit/_SensorName.ascx", Model);%>
+
+            <%--Is Sensor Active--%>
+            <% Html.RenderPartial("~/Views/Sensor/SensorEdit/_IsSensorActive.ascx", Model);%>
+
+            <%--Heartbeat--%>
+            <% Html.RenderPartial("~/Views/Sensor/SensorEdit/_HeartBeat.ascx", Model);%>
+
+            <%--Use with Repeater--%>
+            <% Html.RenderPartial("~/Views/Sensor/SensorEdit/_UseWithRepeater.ascx", Model);%>
+
+            <%--Time of Day Active--%>
+
+
+
+            <%-- Max and Min Speed active zeroing--%>
+            <% Html.RenderPartial("~/Views/Sensor/ApplicationSpecific/39/SampleInterval.ascx", Model);%>
+
+            <%--Min Threshold--%>
+            <% Html.RenderPartial("~/Views/Sensor/ApplicationSpecific/39/_MaxThreshold.ascx", Model);%>
+            <% if (Model.IsWiFiSensor)
+               { %>
+
+            <%--Recovery--%>
+            <% Html.RenderPartial("~/Views/Sensor/SensorEdit/_Recovery.ascx", Model);%>
+            <% Html.RenderPartial("~/Views/Sensor/SensorEdit/_WifiSensor.ascx", Model);%>
+
+            <%} %>
+        </table>
+        <%:Html.Partial("Tags", Model)%>
+        <div style="clear: both;"></div>
+    </div><% Html.RenderPartial("~/Views/Sensor/SensorEdit/_SaveButtons.ascx", Model);%>
+</form>

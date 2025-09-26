@@ -1,0 +1,65 @@
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+
+<% 
+	Response.Cache.SetExpires(DateTime.UtcNow.AddDays(-1));
+    Response.Cache.SetValidUntilExpires(false);
+    Response.Cache.SetRevalidation(HttpCacheRevalidation.AllCaches);
+    Response.Cache.SetCacheability(HttpCacheability.NoCache);
+    Response.Cache.SetNoStore();
+%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>
+        <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
+    </title>
+    
+   <% Html.RenderPartial("MasterIncludes"); %>
+</head>
+<body>
+    <div id="window">
+        <div id="inside">
+            <div id="header">
+                <div id="logo">
+                    &nbsp;</div>
+                <!-- logo -->
+                <div id="logindisplay">
+                    <% Html.RenderPartial("LogOnUserControl"); %>
+                </div>
+                <!-- logindisplay -->
+                
+                <div id="menucontainer">
+                    <div id="top_nav">
+                        <ul class="sf-menu sf-js-enabled sf-shadow">
+                            
+                            <li><a id="MenuAccounts" class="sf-with-ul" href="/Account/Index">Administration</a></li>
+                            <li><a class="sf-with-ul" href="/Advertising/AdvertisementOverview">Advertisements</a></li>
+                            
+                        </ul>
+                    </div> <!-- top_nav --> 
+                </div>
+                <!-- menucontainer -->
+            </div>
+            <!-- header -->
+            <div>
+                <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+            </div>
+            <!-- page -->
+            <%--<div>
+                <!-- Bottom 3 Panel -->
+                <% Html.RenderPartial("BottomTable"); %>
+            </div>--%>
+            <div class="kill_height">
+                &nbsp;</div>
+        </div>
+        <!-- inside -->
+        <div id="window_btm">
+        </div>
+        <!--window_btm-->
+    </div>
+    <!-- window -->
+    <% Html.RenderPartial("Footer"); %>
+	<% Html.RenderPartial("DateRangePickerMenu"); %>
+     <% Html.RenderPartial("~/Views/Shared/_AntiForgeryToken.ascx"); %>
+</body>
+</html>

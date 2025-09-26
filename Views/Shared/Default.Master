@@ -1,0 +1,358 @@
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+
+<% System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
+    string path = HttpContext.Current.Request.Url.AbsolutePath;%>
+
+<% if (!MonnitSession.CurrentTheme.EnableDashboard && (
+                                                            !path.ToLower().Contains("/api") &&
+                                                            !path.ToLower().Contains("/json") &&
+                                                            !path.ToLower().Contains("/xml") &&
+                                                            !path.ToLower().Contains("/export")))
+    {
+        Response.Cookies.Remove("portaltype");
+        Response.Redirect("/");
+    }
+
+	Response.Cache.SetExpires(DateTime.UtcNow.AddDays(-1));
+    Response.Cache.SetValidUntilExpires(false);
+    Response.Cache.SetRevalidation(HttpCacheRevalidation.AllCaches);
+    Response.Cache.SetCacheability(HttpCacheability.NoCache);
+    Response.Cache.SetNoStore();
+%>
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+    <%
+        string CacheControl = ConfigData.FindValue("CacheControl");
+        if (string.IsNullOrEmpty(CacheControl))
+            CacheControl = DateTime.UtcNow.Date.Ticks.ToString();//If nothing else force refresh once a day
+    %>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <%--    --%>
+    <%--<meta name="viewport" content="width=device-width, initial-scale=1">--%>
+    <!-- Trying this to prevent weird app zoom on mobile  -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <!--320-->
+
+    <title>
+        <% Html.RenderPartial("Title"); %><asp:ContentPlaceHolder ID="TitleContent" runat="server" />
+    </title>
+
+    <%if (MonnitSession.CurrentBinaryStyle("Favicon") != null && MonnitSession.CurrentBinaryStyle("Favicon").Length > 0)
+        { %>
+    <link rel="shortcut icon" href="/Overview/Favicon" />
+    <%}
+        else
+        { %>
+    <link rel="shortcut icon" href="<%: Html.GetThemedContent("Favicon.ico")%>" />
+    <%} %>
+
+
+    <!-- Bootstrap -->
+    <link href="/content/Overview/plugins/bootstrap/css/bootstrap.min.css?20211116" rel="stylesheet">
+    <script src="/content/Overview/js/popper.min.js"></script>
+    <!-- Font Awesome -->
+    <%--   <link href="/content/Overview/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">--%>
+
+    <!-- Bootstrap Toggle http://www.bootstraptoggle.com-->
+    <link href="/content/bootstrap-toggle.min.css?20211116" rel="stylesheet">
+    <!-- Default Theme Style -->
+    <link href="<%: Html.GetThemedContent("/Overview/tabs.css")%>" rel="stylesheet" type="text/css" />
+    <link href="<%: Html.GetThemedContent("/Overview/css/custom.css")%>?<%:CacheControl %>" rel="stylesheet">
+    <link href="<%: Html.GetThemedContent("/Overview/css/cards.css")%>?<%:CacheControl %>" rel="stylesheet">
+    <link href="<%: Html.GetThemedContent("/Overview/css/welcome-setup.css")%>?<%:CacheControl %>" rel="stylesheet">
+    <link href="<%: Html.GetThemedContent("/Overview/css/ruleStyles.css")%>?<%:CacheControl %>" rel="stylesheet">
+    <link href="<%: Html.GetThemedContent("/Overview/css/chooseTask.css")%>?<%:CacheControl %>" rel="stylesheet">
+    <link href="<%: Html.GetThemedContent("/Overview/css/location.css")%>?<%:CacheControl %>" rel="stylesheet">
+    <link href="<%: Html.GetThemedContent("/Overview/css/homepage.css")%>?<%:CacheControl %>" rel="stylesheet">
+
+    <!-- intlTelInput -->
+    <link rel="stylesheet" href="/Scripts/jqueryPlugins/internationalPhone/css/intlTelInput.css" />
+
+    <!-- Custom Theme Style <%:"ThemeID:" + MonnitSession.CurrentTheme.AccountThemeID + " StyleGroupID:" + ((MonnitSession.CurrentStyleGroup != null) ? MonnitSession.CurrentStyleGroup.AccountThemeStyleGroupID.ToString() : "N/A") %> -->
+    <%if (MonnitSession.CurrentStyleGroup != null)
+        {
+            Html.RenderPartial("~/Views/Shared/_CustomAccountThemeStyle.ascx", MonnitSession.CurrentStyleGroup);
+        }
+        else
+        {%>
+    <style>
+        :root {
+            --mainMenu-text-color: #fff;
+        }
+
+        .mobileMenuTitle {
+            color: black;
+        }
+    </style>
+    <%}%>
+
+    <link href="/content/Overview/css/adders.css" rel="stylesheet">
+
+    <link href="<%: Html.GetThemedContent("tipTip.css")%>" rel="stylesheet" type="text/css" />
+
+    <!-- ECharts Script to Generate Return Temp Gauge -->
+    <%--    <script src="/content/Overview/plugins/echarts/dist/echarts.min.4.2.0.js"></script>--%>
+    <script src="/content/Overview/plugins/echarts-5.4.3/dist/echarts.min.js"></script>
+    <!-- jQuery 
+    <script src="/content/Overview/plugins/jquery/dist/jquery.min.js"></script>-->
+    <!-- jquery ui -->
+    <script src="/Scripts/jqueryPlugins/jquery-3.6.0.min.js?<%:CacheControl %>" type="text/javascript"></script>
+    <script src="/Scripts/jquery-migrate-1.2.1.min.js?<%:CacheControl %>" type="text/javascript"></script>
+    <%--<script src="/Scripts/jqueryPlugins/jquery-ui-3.6.0.min.js?<%:CacheControl %>" type="text/javascript"></script>--%>
+    <script src="/Scripts/jqueryPlugins/jquery-ui-1.13.2.min.js?<%:CacheControl %>" type="text/javascript"></script>
+    <script src="/Scripts/jquery.ui.touch-punch.min.js?<%:CacheControl %>" type="text/javascript"></script>
+    <script src="/Scripts/jqueryPlugins/jquery.autocomplete.js?<%:CacheControl %>"></script>
+
+    <script src="/Scripts/masterOV.js?<%:CacheControl %>"></script>
+
+<%--    <link href="/Content/Overview/css/mobiscroll/mobiscroll4.jquery.min.css?20211116" rel="stylesheet">--%>
+    <link href="/Content/Overview/css/mobiscroll/mobiscroll5.jquery.min.css?20211116" rel="stylesheet">
+
+<%--    <script src="/Content/Overview/js/mobiscroll/mobiscroll4.jquery.min.js?<%:CacheControl %>"></script>--%>
+<%--    <script>
+        // Save the mobiscroll 4 object before loading v5
+        window.mobiscroll4 = mobiscroll;
+        // Save the mobiscroll 4 plugin before loading v5
+        $.fn.mobiscroll4 = $.fn.mobiscroll;
+    </script>--%>
+    <script src="/Content/Overview/js/mobiscroll/mobiscroll5.jquery.min.js?<%:CacheControl %>"></script>
+
+    <script type="text/javascript" src="/Content/Overview/js/payform/jquery.payform.min.js?<%:CacheControl %>"></script>
+
+    <script type="text/javascript" src="/Content/Overview/js/payform/jquery.payform.min.js?<%:CacheControl %>"></script>
+
+    <!-- jQuery 
+    <script src="/content/Overview/plugins/jquery/jquery.min.js"></script>-->
+    <!-- Bootstrap -->
+    <script src="/content/Overview/plugins/bootstrap/js/bootstrap.min.js?<%:CacheControl %>"></script>
+    <!-- Bootscrap Toggle -->
+    <script src="/Scripts/bootstrap-toggle.min.js?<%:CacheControl %>"></script>
+    <!-- bootstrap-daterangepicker -->
+    <%--    <script src="/content/Overview/js/moment/moment.min.js"></script>--%>
+    <script src="/content/Overview/js/datepicker/daterangepicker.js"></script>
+    <!-- Custom Theme Style -->
+    <!-- intlTelInput -->
+    <script src="/Scripts/jqueryPlugins/internationalPhone/js/intlTelInput.min.js?<%:CacheControl %>" type="text/javascript"></script>
+
+    <!-- Skin Overrides -->
+    <link href="<%: Html.GetThemedContent("/Overview/css/skin.css")%>" rel="stylesheet">
+
+
+    <!-- Printing CSS -->
+    <link rel="stylesheet" href="/content/Overview/css/print.css" />
+
+    <!-- PWA script -->
+    <script src="../../PWA/pwaHelper.js"></script>
+</head>
+
+
+
+<body class="nav-md">
+    <%Html.RenderPartial("ErrorSuccessToasts"); %>
+    <!-- Announcement Modal -->
+    <div id="AnnouncementModel">
+        <% if (MonnitSession.CurrentCustomer != null && MonnitSession.NewestAnnouncement != null)
+            {
+                Html.RenderPartial("_AnnouncementPopup", MonnitSession.NewestAnnouncement);
+            }
+        %>
+    </div>
+
+
+
+    <div class="col-12 container body" id="windowOV" style="width: 100vw; margin: 0!important;">
+        <% Html.RenderPartial("SubscriptionHeader"); %>
+
+        <div class="main_container">
+            <div id="confirmCustomOverlay" hidden>
+                <div id="confirmCustom">
+                    <span id="confirmCustomMessage"></span>
+                </div>
+            </div>
+            <div id="modelDemo"></div>
+            <div class="main_topBar">
+                <% Html.RenderPartial("TopBar"); %>
+            </div>
+            <div id="sideNav" class="main_leftBar">
+
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 22.541 22.541" href="javascript:void(0)" class="closebtn media_mobile" onclick="closeNav()">
+                    <path id="ic_arrow_back_24px" d="M20,11H7.83l5.59-5.59L12,4,4,12l8,8,1.41-1.41L7.83,13H20Z" transform="translate(9.792 -5.635) rotate(40)" fill="#fff" />
+                </svg>
+
+                <div class="inner_leftBar <%:Request.Path.StartsWith("/Overview/GatewayIndex") || Request.Path.StartsWith("/Overview/SensorIndex") || Request.Path.StartsWith("/Overview/GatewayHome") || Request.Path.StartsWith("/Overview/SensorChart") ? "":" " %>" style="align-items: center;">
+                    <% Html.RenderPartial("LeftBar", MonnitSession.SensorListFilters.CSNetID); %>
+                </div>
+                <%
+                    if (MonnitSession.CurrentCustomer != null)
+                    {
+                        List<CSNet> CSNetList = iMonnit.Controllers.CSNetController.GetListOfNetworksUserCanSee(null);
+
+                        string selection = ViewBag.LeftNavSelection;
+                        string urlparameter = (string)ViewContext.RouteData.Values["id"];
+                        long parameterid = urlparameter.ToLong();
+
+
+                        if (Request.Path.StartsWith("/Overview/SensorIndex") || Request.Path.StartsWith("/Overview/GatewayIndex"))
+                        {
+                            Html.RenderPartial("~/Views/Shared/_NetworkSideBar.ascx");
+                        }
+                        else if (Request.Path.StartsWith("/Overview/SensorChart"))
+                        {
+                            Html.RenderPartial("~/Views/Shared/_SensorSideBar.ascx", MonnitSession.SensorListFilters.CSNetID);
+                        }
+                        else if (Request.Path.StartsWith("/Overview/GatewayHome"))
+                        {
+                            Html.RenderPartial("~/Views/Shared/_GatewaySideBar.ascx", MonnitSession.SensorListFilters.CSNetID);
+                        }
+                    }%>
+            </div>
+
+
+            <% Html.RenderPartial("MaintenanceBar"); %>
+
+            <!-- page content -->
+            <div class="right_col" role="main" style="max-width:2000px">
+                <!-- Locations nav bar -->
+                <div class="d-master d-flex" style="">
+                    <%if (MonnitSession.CurrentCustomer != null)
+                        { %>
+                    <% Html.RenderPartial("LocationsBar"); %>
+                    <%} %>
+                </div>
+
+                <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+            </div>
+
+            <%--<% Html.RenderPartial("DateRangePickerMenu"); %>--%>
+            <% Html.RenderPartial("~/Views/Shared/_AntiForgeryToken.ascx"); %>
+            <!-- /page content -->
+
+            <!-- cookie content -->
+            <% if (MonnitSession.CurrentCustomer != null)
+                {
+                    Customer cust = Customer.Load(MonnitSession.CurrentCustomer.CustomerID);
+                    if (cust.CookieAcceptanceDate <= ("01/01/0001 12:00:00").ToDateTime())
+                    {
+                        Html.RenderPartial("CookieBar");
+                    }
+                }%>
+            <!-- /cookie content -->
+        </div>
+    </div>
+
+
+
+    <!-- Alert Modal -->
+    <div class="modal fade" id="alertModal" tabindex="-1" aria-labelledby="alertModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content shadow-lg">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p id="alertModalMessage"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="OKbtn" onclick="$('#confirmAlert').show(); $(this).hide();location.reload();">OK</button>
+                    <button class="btn btn-primary" id="confirmAlert" type="button" disabled style="display: none;">
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        <span class="visually-hidden">Loading...</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirm Modal -->
+    <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content shadow-lg">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmModalLabel"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="message"></p>
+                    <div class="alert alert-danger" style="display: none;" role="alert">
+                        <p class="error my-0"></p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="modalCancel" onclick="cancelPost();" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button id="modalSubmit" onclick="confirmPost(); $('#confirmLoad').show(); $(this).hide()" class="btn btn-primary">OK</button>
+                    <button class="btn btn-primary" id="confirmLoad" type="button" disabled style="display: none;">
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        <span class="visually-hidden">Loading...</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Message Modal (No redirect, no reload) -->
+    <div class="modal fade" id="messageModal" tabindex="-1" aria-labelledby="messageModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content shadow-lg">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="messageModalLabel"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="message" style="white-space: pre-wrap"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Modal -->
+    <%if (MonnitSession.CurrentCustomer != null) { Html.RenderPartial("_AddModal"); } %>
+
+    <%Html.RenderPartial("PopupNoticeModal"); %>
+</body>
+
+<!-- Custom Theme Scripts -->
+<script src="/content/Overview/js/custom.min.js"></script>
+
+<script>
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-33519160-4');
+
+
+    function openMenu() {
+
+    }
+
+    function closeMenu() {
+
+    }
+
+    function openNav() {
+        document.getElementById("sideNav").style.width = "100%";
+    }
+
+    function closeNav() {
+        document.getElementById("sideNav").style.width = "0";
+    }
+
+
+</script>
+    <% if (MonnitSession.CurrentCustomer != null && MonnitSession.IsCurrentCustomerMonnitSuperAdmin)
+        { %>
+<script>
+    const printMachineName = () => { console.log('<%= Environment.MachineName %>') }
+</script>
+    <% } %>
+
+</html>
+

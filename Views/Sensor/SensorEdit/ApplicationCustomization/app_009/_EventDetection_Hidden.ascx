@@ -1,0 +1,55 @@
+﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<Monnit.Sensor>" %>
+
+<%
+    string EventDetectionTypeDescription = string.Empty;
+    string valueForZero = string.Empty;
+    string valueForOne = string.Empty;
+    MonnitApplicationBase.ProfileSettingsForTriggeredUI(Model, out EventDetectionTypeDescription, out valueForZero, out valueForOne);
+
+    SelectList select = null;
+    string SelectedValue = "";
+    switch (Model.EventDetectionType)
+    {
+        case 2:
+            SelectedValue = Html.TranslateTag("Sensor/ApplicationCustomization/Default|State Change", "State Change");
+            break;
+        case 1:
+            SelectedValue = valueForOne; // Open
+            break;
+        case 0:
+            SelectedValue = valueForZero; // Closed
+            break;
+    }
+
+    if (Model.SensorTypeID != 4 && new Version(Model.FirmwareVersion) >= new Version("2.3.0.0") || Model.SensorTypeID == 8)
+    {
+        select = new SelectList(new string[3] { valueForZero, valueForOne, "State Change" }, SelectedValue);
+    }
+    else if (Model.SensorTypeID == 4 || new Version(Model.FirmwareVersion) < new Version("2.3.0.0"))
+    {
+        select = new SelectList(new string[2] { valueForZero, valueForOne }, SelectedValue);
+    }
+
+
+    string reportValue = "Removed";
+    List<SensorAttribute> sa = SensorAttribute.LoadBySensorID(Model.SensorID);
+
+    foreach (var att in sa)
+    {
+        if (att.Name == "MagnetPresent")
+            reportValue = att.Value;
+    } 
+%>
+
+    <select class="tzSelect" <%=Model.CanUpdate ? "" : "disabled" %> id="ReportOpen" name="ReportOpen" hidden>
+        <option value="Removed"><%: Html.TranslateTag("Removed","Removed")%></option>
+        <option value="Introduced"><%: Html.TranslateTag("Introduced","Introduced")%></option>
+    </select>
+
+    <%: Html.DropDownList("EventDetectionType_Manual", select as IEnumerable<SelectListItem>, (Dictionary<string,object>)ViewData["HtmlAttributes"])%>
+
+    
+
+<script>
+    $('#EventDetectionType_Manual').hide();
+</script>

@@ -1,0 +1,11 @@
+﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<Gateway>" %>
+
+
+<div class="addsuccess">
+    <div><%: Html.TranslateTag("Success","Success")%>: <%: Model.GatewayType.Name %> - <%: Model.GatewayID %></div>
+    <a class="btn btn-link" href="/Overview/GatewayEdit/<%=Model.GatewayID %>" style="margin-bottom:3px;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 18.003 18.003" >
+            <path id="ic_mode_edit_24px" d="M3,17.25V21H6.75L17.81,9.94,14.06,6.19ZM20.71,7.04a1,1,0,0,0,0-1.41L18.37,3.29a1,1,0,0,0-1.41,0L15.13,5.12l3.75,3.75,1.83-1.83Z" transform="translate(-3 -2.997)"/>
+        </svg>
+    </a>
+</div>

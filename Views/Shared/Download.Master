@@ -1,0 +1,73 @@
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+
+<% 
+	Response.Cache.SetExpires(DateTime.UtcNow.AddDays(-1));
+    Response.Cache.SetValidUntilExpires(false);
+    Response.Cache.SetRevalidation(HttpCacheRevalidation.AllCaches);
+    Response.Cache.SetCacheability(HttpCacheability.NoCache);
+    Response.Cache.SetNoStore();
+%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>
+        <% Html.RenderPartial("Title"); %> | <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
+    </title>
+    <link rel="shortcut icon" href="<%: Html.GetThemedContent("Favicon.ico")%>" />
+    
+    <% Html.RenderPartial("MasterIncludes"); %>
+</head>
+<body>
+    <div id="window">
+        <div id="inside">
+            <div id="header">
+                <div id="logo">
+                    &nbsp;</div>
+                <!-- logo -->
+                <div id="logindisplay">
+                    <% Html.RenderPartial("LogOnUserControl"); %>
+                </div>
+                <!-- logindisplay -->
+                
+                <div id="menucontainer">
+                    <div id="top_nav">
+                        <%if (MonnitSession.CurrentCustomer != null)
+                            {
+                                CustomerPermissionType cpt = CustomerPermissionType.Find("Network_View");
+                                List<CSNet> CSNetList = iMonnit.Controllers.CSNetController.GetListOfNetworksUserCanSee(null);
+                                int NetworkCount = CSNetList.Count;
+                        %>
+            	        <ul class="sf-menu sf-js-enabled sf-shadow">
+                            
+                            <li><a id="MenuNetwork" class="sf-with-ul" href="/">Downloads</a></li>
+                            
+            	        </ul>
+            	        <%} %>
+                    </div> <!-- top_nav --> 
+                </div>
+                <!-- menucontainer -->
+            </div>
+            <!-- header -->
+            <div>
+                <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+            </div>
+            <!-- page -->
+            <%--<div>
+                <!-- Bottom 3 Panel -->
+                <% if (MonnitSession.CurrentCustomer != null)
+                { Html.RenderPartial("BottomTable"); } %>
+            </div>--%>
+            <div class="kill_height">
+                &nbsp;</div>
+        </div>
+        <!-- inside -->
+        <div id="window_btm">
+        </div>
+        <!--window_btm-->
+    </div>
+    <!-- window -->
+    <% Html.RenderPartial("Footer"); %>
+	<% Html.RenderPartial("DateRangePickerMenu"); %>
+     <% Html.RenderPartial("~/Views/Shared/_AntiForgeryToken.ascx"); %>
+</body>
+</html>
