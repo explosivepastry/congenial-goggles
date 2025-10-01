@@ -1,0 +1,106 @@
+﻿// Decompiled with JetBrains decompiler
+// Type: iMonnit.Models.DateRangeModel
+// Assembly: iMonnit, Version=4.0.5.0, Culture=neutral, PublicKeyToken=null
+// MVID: 8D8B7007-62F0-412B-AC82-92244CE5EA6C
+// Assembly location: C:\inetpub\wwwroot\Enterprise\bin\iMonnit.dll
+
+using RedefineImpossible;
+using System;
+using System.Collections;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
+
+#nullable disable
+namespace iMonnit.Models;
+
+public class DateRangeModel
+{
+  [Required]
+  [DisplayName("Start Date")]
+  public DateTime StartDate { get; set; }
+
+  [Required]
+  [DisplayName("End Date")]
+  public DateTime EndDate { get; set; }
+
+  public bool ShowTime { get; set; }
+
+  public void SetTime(FormCollection collection)
+  {
+    int hours1 = collection["StartTimeHour"].ToInt();
+    if (hours1 == 12)
+      hours1 = 0;
+    if (collection["StartTimeAM"] == "PM")
+      hours1 += 12;
+    int minutes1 = collection["StartTimeMinute"].ToInt();
+    DateTime dateTime = this.StartDate;
+    this.StartDate = dateTime.Add(new TimeSpan(hours1, minutes1, 0));
+    int hours2 = collection["EndTimeHour"].ToInt();
+    if (hours2 == 12)
+      hours2 = 0;
+    if (collection["EndTimeAM"] == "PM")
+      hours2 += 12;
+    int minutes2 = collection["EndTimeMinute"].ToInt();
+    dateTime = this.EndDate;
+    this.EndDate = dateTime.Add(new TimeSpan(hours2, minutes2, 0));
+  }
+
+  public SelectList Hours(DateTime time)
+  {
+    int hour = time.Hour;
+    if (time.Minute >= 45)
+      hour = time.AddHours(1.0).Hour;
+    return new SelectList((IEnumerable) new string[12]
+    {
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "12"
+    }, (object) (hour > 12 ? hour - 12 : (hour == 0 ? 12 : hour)).ToString());
+  }
+
+  public SelectList Minutes(DateTime time)
+  {
+    string selectedValue = "00";
+    if (time.Minute < 15)
+      selectedValue = "15";
+    else if (time.Minute < 30)
+      selectedValue = "30";
+    else if (time.Minute < 45)
+      selectedValue = "45";
+    return new SelectList((IEnumerable) new string[4]
+    {
+      "00",
+      "15",
+      "30",
+      "45"
+    }, (object) selectedValue);
+  }
+
+  public SelectList AM(DateTime time)
+  {
+    int hour = time.Hour;
+    if (time.Minute >= 45)
+      hour = time.AddHours(1.0).Hour;
+    return new SelectList((IEnumerable) new string[2]
+    {
+      nameof (AM),
+      "PM"
+    }, hour < 12 ? (object) nameof (AM) : (object) "PM");
+  }
+
+  public DateRangeModel()
+  {
+    this.StartDate = DateTime.UtcNow.AddDays(-7.0);
+    this.EndDate = DateTime.UtcNow;
+  }
+}

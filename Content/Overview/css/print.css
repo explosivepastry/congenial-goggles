@@ -1,0 +1,13 @@
+﻿@media print {
+    body * {
+        visibility: hidden;
+    }
+    #hook-five * {
+        visibility: visible;
+    }
+    #hook-five {
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+}

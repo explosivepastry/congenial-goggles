@@ -1,0 +1,346 @@
+﻿@charset "UTF-8";
+
+.color1 {color:#335c80;}
+.color2 {color:#666;}
+.color3 {color:#2d5576;}
+.color4 {color:#335c80;}
+
+body {
+    color: #aaa;
+    background: #ebebf0;
+}
+
+a {
+  color: #515356;
+  text-decoration: none; }
+
+a:hover, a:focus {
+  color: #666;
+  text-decoration: none; }
+
+.ListBorderStatus {
+    background-color: #eeeeee;
+}
+
+.done .ListBorderStatus {
+    background-color: #21CE99;
+}
+
+.navbar-header {
+  background: #34495E; }
+
+.nav_title {
+    /*  background: #2A3F54;*/
+    background: #2C3745;
+}
+
+.left_col {
+    /*  background: #2A3F54;*/
+    background: #2C3745;
+}
+
+.nav.side-menu > li.active > a {
+    text-shadow: rgba(0, 0, 0, 0.25) 0 -1px 0;
+    background: #2C3745;
+    /*	  background: #2A3F54;*/
+    box-shadow: rgba(0, 0, 0, 0.25) 0 1px 0, inset rgba(255, 255, 255, 0.16) 0 1px 0;
+}
+
+.nav.side-menu > li > a:hover {
+  color: #F2F5F7 !important; }
+
+.nav.side-menu > li.current-page, .nav.side-menu > li.active {
+  border-right: 5px solid #999; }
+
+.nav-sm ul.nav.child_menu {
+    /*	background: #2A3F54;*/
+    background: #2C3745;
+}
+
+.nav-sm .nav.child_menu li.active, .nav-sm .nav.side-menu li.active-sm {
+  border-right: 5px solid #999; }
+
+.sidebar-footer {
+    background: #2C3745;
+    /*	background: #2A3F54;*/
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+  color: #73879C;
+  padding-top: 5px; }
+
+.btn-primary {
+/*    color: #fff;*/
+/*    background-color: #2C3745;*/
+    /*	background: #2A3F54;*/
+/*    border-color: #2d5576;*/
+}
+
+a.btn-success, a.btn-primary, a.btn-warning, a.btn-danger {
+    color: var(--prime-btn-text-color);
+}
+
+.btn-success {
+  background: #26B99A;
+  border: 1px solid #169F85; }
+
+.btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success.active, .open .dropdown-toggle.btn-success {
+  background: #169F85; }
+
+.btn-grey {
+  color: #333333;
+  background-color: #EEEEEE;
+  border-color: #999999; }
+
+.btn-grey:hover, .btn-grey:focus, .btn-grey:active, .btn-grey.active, .open .dropdown-toggle.btn-grey {
+  color: #333333;
+  background-color: #DDDDDD;
+  border-color: #999999; }
+
+.btn-dark {
+  color: #E9EDEF;
+  background-color: #4B5F71;
+  border-color: #364B5F; }
+
+.btn-dark:hover, .btn-dark:focus, .btn-dark:active, .btn-dark.active, .open .dropdown-toggle.btn-dark {
+  color: #FFFFFF;
+  background-color: #394D5F;
+  border-color: #394D5F; }
+
+.navbar-nav > li > a, .navbar-brand, .navbar-nav > li > a {
+  color: #fff !important; }
+
+.top_nav .nav > li > a:focus, .top_nav .nav > li > a:hover, .top_nav .nav .open > a, .top_nav .nav .open > a:focus, .top_nav .nav .open > a:hover {
+  background: #D9DEE4; }
+
+.dropdown-menu > li > a { color:#2C3745;}
+
+.progress-bar-dark {
+  background-color: #34495E !important; }
+
+.progress-bar-gray {
+  background-color: #BDC3C7 !important; }
+
+.glance-reading {
+   /* color: #515356;*/} 
+
+.glance-general {
+	color: #aaa;}
+
+.glanceBox {
+    border: #d9d9d9 1px solid;
+    box-shadow: 0 0 10px #d9d9d9;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fafafa',endColorstr='#ffffff');}
+
+.glanceHead {
+    background-color: #eee;}
+
+.glanceRow {
+    background: #fff;
+    border-bottom: 1px solid #ccc;}
+
+/*.sensorIcon, .gatewayIcon, .sensorStatusInactive, .sensorStatusSleeping, .sensorStatusOffline, .gatewayStatusInactive, .gatewayStatusSleeping, .sensorStatusWarning, .gatewayStatusWarning, .gatewayStatusOffline {
+    color: #999; fill: #999; padding: 5px;}*/
+
+
+.sensorStatusOK, .gatewayStatusOK {
+    background-color: #37BC9B;
+    color: #fff;
+    fill: #fff !important;
+}
+
+.sensorStatusAlert, .gatewayStatusAlert {
+    background-color: #EE3D18;
+    box-shadow: inset 0 0 0 1px #EE3D18;
+    color: #fff;
+    fill: #fff !important;
+}
+
+/*Grey */
+.glance-name, .battIcon {
+/*    color: #666;}*/
+
+/*Green*/
+.iconSignal, .icon-signal-4, .icon-signal-5 {
+    color: black;}
+
+/*yellow*/
+.batteryLow  {
+    color: orangered;}
+
+/*Red*/
+.batteryCritical, .icon-signal-0, .icon-signal-1 {
+    color: orangered;}
+
+.holderAlert-n {
+    background: -moz-radial-gradient(circle,rgba(200,2,2,0.3),rgba(0,0,0,0.001) 28px); /* FF3.6+ */
+    background: -webkit-radial-gradient(circle,rgba(200,2,2,0.3),rgba(0,0,0,0.001) 28px); /* Chrome10+,Safari5.1+ */
+    background: -o-radial-gradient(circle,rgba(200,2,2,0.3),rgba(0,0,0,0.001) 28px); /* Opera11.10+ */
+    background: -ms-radial-gradient(circle,rgba(200,2,2,0.3),rgba(0,0,0,0.001) 28px); /* IE10+ */
+}
+
+.holderWarning-n {
+    background: -moz-radial-gradient(circle,rgba(255,195,0,0.3),rgba(0,0,0,0.001) 28px); /* FF3.6+ */
+    background: -webkit-radial-gradient(circle,rgba(255,195,0,0.3),rgba(0,0,0,0.001) 28px); /* Chrome10+,Safari5.1+ */
+    background: -o-radial-gradient(circle,rgba(255,195,0,0.3),rgba(0,0,0,0.001) 28px); /* Opera11.10+ */
+    background: -ms-radial-gradient(circle,rgba(255,195,0,0.3),rgba(0,0,0,0.001) 28px); /* IE10+ */
+}
+
+.holderOK-n {
+    background: -moz-radial-gradient(circle,rgba(50,180,50,0.3),rgba(0,0,0,0.001) 28px); /* FF3.6+ */
+    background: -webkit-radial-gradient(circle,rgba(50,180,50,0.3),rgba(0,0,0,0.001) 28px); /* Chrome10+,Safari5.1+ */
+    background: -o-radial-gradient(circle,rgba(50,180,50,0.3),rgba(0,0,0,0.001) 28px); /* Opera11.10+ */
+    background: -ms-radial-gradient(circle,rgba(50,180,50,0.3),rgba(0,0,0,0.001) 28px); /* IE10+ */
+}
+
+.holderWarning-Linear {
+    border-color: #ffc300;
+    background: -moz-linear-gradient(left, rgba(0,0,0,0.001) 0%,rgba(255,195,0,0.4) 50%,rgba(0,0,0,0.001) 100%); /* FF3.6+ */
+    background: -webkit-linear-gradient(left, rgba(0,0,0,0.001) 0%,rgba(255,195,0,0.4) 50%,rgba(0,0,0,0.001) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(left, rgba(0,0,0,0.001) 0%,rgba(255,195,0,1) 50%,rgba(0,0,0,0.001) 100%); /* Opera11.10+ */
+    background: -ms-linear-gradient(left, rgba(0,0,0,0.001) 0%,rgba(255,195,0,1) 50%,rgba(0,0,0,0.001) 100%); /* IE10+ */
+}
+
+.Alert {
+    background-color: #c80202;
+}
+
+.Warning {
+    background-color: #ffc300;
+}
+
+.OK {
+    background-color: limegreen;
+}
+
+
+a.inactive:link, a.inactive:hover {
+    color: #666;
+}
+
+a.glyph:link, a.glyph:hover {
+    color: #666;
+}
+
+.btn-fill {
+	/*color: #335c80;*/
+/*	color: #2A3F54;*/
+}
+
+.editor-field, .editor-field input {
+	width: 100%;
+}
+
+.devStat-OK {
+	background-color: limegreen;
+}
+
+.devStat-Alert {
+	background-color: red;
+}
+
+.devStat-Warning {
+	background-color: orange;
+}
+.devStat-Sleeping {
+	background-color: lightgrey;
+}
+
+.creditCount {
+	color: #808080;
+}
+/*.ListBorderActive svg {
+    cursor:pointer;
+    fill: #21CE99;
+    border: 1px solid #7ae99c;
+    background-color: white;
+    color: #ffffff;
+    width: 50px;
+    border-radius: 50%;
+    box-shadow: rgb(60 64 67 / 70%) 0px 1px 2px 0px, rgb(60 64 67 / 32%) 0px 2px 6px 2px !important;
+}
+*/
+/*.ListBorderNotActive {
+    border: 1px solid #E6E9ED;
+    background-color: #eeeeee;
+}*/
+./*ListBorderNotActive svg {
+    cursor:pointer;
+    fill: lightgray;
+    background-color: #eeeeee;
+    background: white;
+    color: #ffffff;
+    width: 50px;
+    height: 50px;
+    border: 1px solid #E6E9ED;
+    border-radius: 50%;
+    box-shadow: rgb(60 64 67 / 30%) 0px 1px 2px 0px, rgb(60 64 67 / 15%) 0px 2px 6px 2px !important;
+}
+.ListBorderNotActive:hover {
+    box-shadow: rgb(9 30 66 / 20%) 1px 2px 1px, rgb(9 30 66 / 15%) 0px 7px 5px -4px, rgb(9 30 66 / 20%) 9px 1px 9px inset;*/
+    /*transform: scale(.9);*/
+/*}*/
+
+
+
+
+
+
+/*.ListBorderActive, svg path {
+    width:50px;
+}*/
+
+.iconActive {
+	color: #009900;}
+
+.iconNotActive {
+	color: #73879C;}
+
+.iconHover:hover{
+	background: #D9DEE4;
+}
+
+.chipHover::after {
+  	content: "";
+  	z-index: 100!important;
+  	opacity: 0;
+}
+.chipHover:hover ~ .sensorIconHover{
+	z-index: 1000!important;
+	box-shadow:inset 0 0 0 1px #515356;
+}
+
+.chipHover:hover::after {
+    opacity: 1;
+}
+
+
+.sensorIconHover::after {
+	content:"";
+	z-index: 101!important;
+	opacity:0;
+}
+
+.sensorIconHover:hover{
+	z-index:101!important;
+	box-shadow:inset 0 0 0 1px #515356!important;
+}
+
+.sensorIconHover:hover::after{
+	opacity: 1;
+}
+
+.OVHover::after{
+  	content: "";
+  	z-index: 101!important;
+  	opacity: 0;
+}
+
+.OVHover:hover .sensorIconHover{
+	z-index: 101!important;
+	box-shadow:inset 0 0 0 1px #515356!important;
+}
+
+.OVHover:hover::after{
+	opacity: 1;
+}

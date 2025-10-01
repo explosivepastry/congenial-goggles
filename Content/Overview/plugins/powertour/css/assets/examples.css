@@ -1,0 +1,322 @@
+
+/*
+
+	This file is used for the examples, therefor 
+	you should not use this file as part of your tour!
+	
+*/
+
+body{
+	font-family:Verdana, Geneva, sans-serif;
+	line-height:24px;
+	font-size:12px;
+	color:#555;
+	background-color:#eee;
+}
+*,
+*:before,
+*:after {
+	box-sizing         : border-box;
+	-webkit-box-sizing : border-box;
+	-moz-box-sizing    : border-box;
+}
+#container{
+	width:900px;
+	padding-bottom:40px;
+	margin:80px 0 0 80px;
+}
+
+.blocks{
+	float:left;
+	width:940px;
+	margin:-20px -20px 100px -20px;
+}
+
+pre{
+	border-radius:5px;
+	padding:20px;
+	margin:0 0 20px 0;
+	clear:both;
+}
+
+header{
+	width:100%;
+	float:left;
+	margin-bottom:100px;
+}
+
+	h1{
+		font-size:40px;
+		margin-top:0;
+		font-weight:normal
+	}
+	
+	p{
+		font-size:12px;
+		margin-top:10px;
+	}
+	
+.trigger-wrap{
+	width:100%;
+	float:left;
+	margin-bottom:100px;
+}
+
+	.trigger{
+		margin:0 20px 0 0;			
+		height:60px; 
+		width:238px;	
+		text-align:center; 
+		background-color:#2854a1;
+		color:#fff;
+		float:left;
+		text-decoration:none;
+		display: block;
+		line-height:45px;
+		text-transform:uppercase;
+		font-size:12px;
+		border-radius:5px;
+	}
+	
+		.trigger > span{
+			clear:both;
+			width:100%;
+			float:left;
+			line-height:0;
+			font-size:10px;
+			margin-top:-5px;
+			text-transform:lowercase
+		}
+		
+	#reset-key{
+		background-color:#F90;
+		display:none
+	}
+
+h2{
+	margin-bottom:40px;
+	font-weight:normal
+}
+
+.powertour-demo-box{
+	margin:20px;			
+	height:270px; 
+	width:273px;
+	float:left;
+	text-align:center; 
+	background-color:#fff;
+	border:1px solid #ccc;
+	text-decoration:none;
+	display: block;			
+	font-size:12px;
+	border-radius:5px;	
+}
+
+	.powertour-demo-box > p{
+		line-height:200px;
+		text-transform:uppercase;
+	}
+	
+	.powertour-demo-box > span{
+		clear:both;
+		width:100%;
+		float:left;
+		line-height:14px;
+		font-size:10px;
+		margin-top:-80px;
+		text-transform:lowercase
+	}
+
+table{
+	width:900px;
+	float:left;
+	table-layout:fixed;
+	background-color:#fff;
+	border:1px solid #ccc;
+	border-collapse:collapse;
+	text-align:left;
+	margin:0 20px;
+}
+
+	table th,
+	table td{
+		border:1px solid #ccc;
+		padding:10px;
+	}
+	
+		table td div,
+		table td strong{
+			margin:-10px;
+			padding:10px;
+			display:block
+		}
+
+.input-field{
+	height:30px;
+	line-height:28px;
+	float:left;
+	width:100%;
+	border:1px solid #ccc;
+	padding:0 10px;
+}
+
+a.btn-disable{
+	color:#F00;
+	cursor:not-allowed
+}
+
+#powertour-demo-cell-1.powertour-active{
+	background-color:#FC0;
+}
+#powertour-demo-cell-2.powertour-active{
+	background-color:#6F3
+}
+#powertour-demo-cell-3.powertour-active{
+	background-color:#09F
+}
+
+/* jQuery Growl
+ * Copyright 2015 Kevin Sylvestre
+ * 1.2.8
+ */
+#growls {
+  z-index: 50000;
+  position: fixed; }
+  #growls.default {
+    top: 10px;
+    right: 10px; }
+  #growls.tl {
+    top: 10px;
+    left: 10px; }
+  #growls.tr {
+    top: 10px;
+    right: 10px; }
+  #growls.bl {
+    bottom: 10px;
+    left: 10px; }
+  #growls.br {
+    bottom: 10px;
+    right: 10px; }
+  #growls.tc {
+    top: 10px;
+    right: 10px;
+    left: 10px; }
+  #growls.bc {
+    bottom: 10px;
+    right: 10px;
+    left: 10px; }
+  #growls.tc .growl, #growls.bc .growl {
+    margin-left: auto;
+    margin-right: auto; }
+
+.growl {
+  opacity: 0.8;
+  filter: alpha(opacity=80);
+  position: relative;
+  border-radius: 5px;
+  -webkit-transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out; }
+  .growl.growl-incoming {
+    opacity: 0;
+    filter: alpha(opacity=0); }
+  .growl.growl-outgoing {
+    opacity: 0;
+    filter: alpha(opacity=0); }
+  .growl.growl-small {
+    width: 200px;
+    padding: 5px;
+    margin: 5px; }
+  .growl.growl-medium {
+    width: 250px;
+    padding: 20px;
+    margin: 10px; }
+  .growl.growl-large {
+    width: 300px;
+    padding: 15px;
+    margin: 15px; }
+  .growl.growl-default {
+    color: #FFF;
+    background: #000; }
+  .growl.growl-error {
+    color: #FFF;
+    background: #C0392B; }
+  .growl.growl-notice {
+    color: #FFF;
+    background: #2ECC71; }
+  .growl.growl-warning {
+    color: #FFF;
+    background: #F39C12; }
+  .growl .growl-close {
+    cursor: pointer;
+    float: right;
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: normal;
+    font-family: helvetica, verdana, sans-serif; }
+  .growl .growl-title {
+    font-size: 16px;
+    line-height: 24px;
+	margin-bottom:10px }
+  .growl .growl-message {
+    font-size: 13px;
+    line-height: 18px; }
+	
+	
+	#progressbar{	
+		width:200px;
+		background-color:#FFF;
+		border:1px solid #ccc;
+		position:fixed;
+		right:20px;
+		top:20px;
+		padding:20px;
+		height:60px;
+		display:none;
+		z-index:9990		
+	}
+	
+		#bar{
+			width:100%;
+			height:4px;
+			float:left;
+			background-color:#eee;		
+		}
+		
+			#bar span{
+				width:0;
+				height:4px;
+				float:left;
+				background-color:#F60;		
+			}
+			
+	#text{
+		width:100%;
+		float:left;
+		text-align:right;
+		font-size:11px;
+		color:#999;
+	}
+	
+		#text span{
+			color:#C00
+		}
+		
+.single-step div{
+	display:inline-block;
+	cursor:pointer
+}
+
+@media only screen and (max-width : 600px){
+	
+	#container {
+		width: 100%;
+		float:left;
+		margin:80px 0;
+		padding:0 30px;
+	}
+	.blocks{
+		width: 100%;
+	}	
+
+}

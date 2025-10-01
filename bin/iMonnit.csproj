@@ -1,0 +1,330 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!--Project was exported from assembly: C:\inetpub\wwwroot\Enterprise\bin\iMonnit.dll-->
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{09E61B8C-42C5-44C5-976B-7BF97C7BD346}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AssemblyName>iMonnit</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <ApplicationVersion>4.0.5.0</ApplicationVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AuthorizeNet">
+      <HintPath>lib\AuthorizeNet.dll</HintPath>
+    </Reference>
+    <Reference Include="BaseApplication">
+      <HintPath>lib\BaseApplication.dll</HintPath>
+    </Reference>
+    <Reference Include="Business">
+      <HintPath>lib\Business.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>lib\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>lib\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Otp.NET">
+      <HintPath>lib\Otp.NET.dll</HintPath>
+    </Reference>
+    <Reference Include="RedefineImpossible">
+      <HintPath>lib\RedefineImpossible.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http">
+      <HintPath>lib\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost">
+      <HintPath>lib\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc" />
+    <Reference Include="System.Web.WebPages" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Models\SensorModels.cs" />
+    <Compile Include="Models\System\Runtime\CompilerServices\RefSafetyRulesAttribute.cs" />
+    <Compile Include="Saml.cs" />
+    <Compile Include="1Saml.cs" />
+    <Compile Include="2Saml.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Models\GatewayModels.cs" />
+    <Compile Include="Models\CSNetModels.cs" />
+    <Compile Include="Models\NotificationModels.cs" />
+    <Compile Include="Models\1NotificationModels.cs" />
+    <Compile Include="Models\ReportModels.cs" />
+    <Compile Include="Models\1ReportModels.cs" />
+    <Compile Include="Models\1SensorModels.cs" />
+    <Compile Include="Models\2SensorModels.cs" />
+    <Compile Include="Models\3SensorModels.cs" />
+    <Compile Include="Models\4SensorModels.cs" />
+    <Compile Include="Models\2ReportModels.cs" />
+    <Compile Include="AllowHtmlPropertyAttribute.cs" />
+    <Compile Include="AuthorizeAttributes.cs" />
+    <Compile Include="1AuthorizeAttributes.cs" />
+    <Compile Include="2AuthorizeAttributes.cs" />
+    <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="Global.asax.cs" />
+    <Compile Include="MonnitController.cs" />
+    <Compile Include="SensorRestAPI.cs" />
+    <Compile Include="AllowCrossSiteJsonAttribute.cs" />
+    <Compile Include="XmlResult.cs" />
+    <Compile Include="JsonpResult.cs" />
+    <Compile Include="MonnitSession.cs" />
+    <Compile Include="MonnitViewEngine.cs" />
+    <Compile Include="MonnitControllerFactory.cs" />
+    <Compile Include="NoCache.cs" />
+    <Compile Include="ThemeController.cs" />
+    <Compile Include="eProgramLevel.cs" />
+    <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\1AccountModels.cs" />
+    <Compile Include="Models\2AccountModels.cs" />
+    <Compile Include="Models\3AccountModels.cs" />
+    <Compile Include="Models\4AccountModels.cs" />
+    <Compile Include="Models\5AccountModels.cs" />
+    <Compile Include="Models\6AccountModels.cs" />
+    <Compile Include="Models\7AccountModels.cs" />
+    <Compile Include="Models\8AccountModels.cs" />
+    <Compile Include="Models\9AccountModels.cs" />
+    <Compile Include="Models\10AccountModels.cs" />
+    <Compile Include="Models\11AccountModels.cs" />
+    <Compile Include="Models\12AccountModels.cs" />
+    <Compile Include="Models\13AccountModels.cs" />
+    <Compile Include="Models\14AccountModels.cs" />
+    <Compile Include="Models\15AccountModels.cs" />
+    <Compile Include="Models\16AccountModels.cs" />
+    <Compile Include="Models\17AccountModels.cs" />
+    <Compile Include="Models\18AccountModels.cs" />
+    <Compile Include="Models\19AccountModels.cs" />
+    <Compile Include="Models\20AccountModels.cs" />
+    <Compile Include="Models\CheckoutModels.cs" />
+    <Compile Include="Models\1CheckoutModels.cs" />
+    <Compile Include="Models\2CheckoutModels.cs" />
+    <Compile Include="Models\3CheckoutModels.cs" />
+    <Compile Include="Models\4CheckoutModels.cs" />
+    <Compile Include="Models\5CheckoutModels.cs" />
+    <Compile Include="Models\6CheckoutModels.cs" />
+    <Compile Include="Models\1GatewayModels.cs" />
+    <Compile Include="Models\2GatewayModels.cs" />
+    <Compile Include="Models\3GatewayModels.cs" />
+    <Compile Include="Models\4GatewayModels.cs" />
+    <Compile Include="Models\MapDeviceModels.cs" />
+    <Compile Include="Models\1MapDeviceModels.cs" />
+    <Compile Include="Models\OverviewModels.cs" />
+    <Compile Include="Models\CustomerModels.cs" />
+    <Compile Include="Models\1CustomerModels.cs" />
+    <Compile Include="Models\2CustomerModels.cs" />
+    <Compile Include="Models\3CustomerModels.cs" />
+    <Compile Include="Models\4CustomerModels.cs" />
+    <Compile Include="Models\5CustomerModels.cs" />
+    <Compile Include="Models\6CustomerModels.cs" />
+    <Compile Include="Models\1CSNetModels.cs" />
+    <Compile Include="Models\2CSNetModels.cs" />
+    <Compile Include="Models\3CSNetModels.cs" />
+    <Compile Include="Models\4CSNetModels.cs" />
+    <Compile Include="Models\5CSNetModels.cs" />
+    <Compile Include="Models\6CSNetModels.cs" />
+    <Compile Include="Models\EmailModels.cs" />
+    <Compile Include="Models\ErrorModels.cs" />
+    <Compile Include="Models\1ErrorModels.cs" />
+    <Compile Include="Models\2NotificationModels.cs" />
+    <Compile Include="Models\3NotificationModels.cs" />
+    <Compile Include="Models\4NotificationModels.cs" />
+    <Compile Include="Models\5NotificationModels.cs" />
+    <Compile Include="Models\6NotificationModels.cs" />
+    <Compile Include="Models\7NotificationModels.cs" />
+    <Compile Include="Models\8NotificationModels.cs" />
+    <Compile Include="Models\9NotificationModels.cs" />
+    <Compile Include="Models\10NotificationModels.cs" />
+    <Compile Include="Models\11NotificationModels.cs" />
+    <Compile Include="Models\12NotificationModels.cs" />
+    <Compile Include="Models\13NotificationModels.cs" />
+    <Compile Include="Models\14NotificationModels.cs" />
+    <Compile Include="Models\15NotificationModels.cs" />
+    <Compile Include="Models\3ReportModels.cs" />
+    <Compile Include="Models\4ReportModels.cs" />
+    <Compile Include="Models\5ReportModels.cs" />
+    <Compile Include="Models\6ReportModels.cs" />
+    <Compile Include="Models\7ReportModels.cs" />
+    <Compile Include="Models\8ReportModels.cs" />
+    <Compile Include="Models\9ReportModels.cs" />
+    <Compile Include="Models\10ReportModels.cs" />
+    <Compile Include="Models\11ReportModels.cs" />
+    <Compile Include="Models\12ReportModels.cs" />
+    <Compile Include="Models\13ReportModels.cs" />
+    <Compile Include="Models\14ReportModels.cs" />
+    <Compile Include="Models\AdminModels.cs" />
+    <Compile Include="Models\SetupModels.cs" />
+    <Compile Include="Models\5SensorModels.cs" />
+    <Compile Include="Models\6SensorModels.cs" />
+    <Compile Include="Models\7SensorModels.cs" />
+    <Compile Include="Models\8SensorModels.cs" />
+    <Compile Include="Models\9SensorModels.cs" />
+    <Compile Include="Models\10SensorModels.cs" />
+    <Compile Include="Models\11SensorModels.cs" />
+    <Compile Include="Models\12SensorModels.cs" />
+    <Compile Include="Models\13SensorModels.cs" />
+    <Compile Include="Models\14SensorModels.cs" />
+    <Compile Include="Models\15SensorModels.cs" />
+    <Compile Include="Models\16SensorModels.cs" />
+    <Compile Include="Models\17SensorModels.cs" />
+    <Compile Include="Models\18SensorModels.cs" />
+    <Compile Include="Models\19SensorModels.cs" />
+    <Compile Include="Models\20SensorModels.cs" />
+    <Compile Include="Models\CustomModels\AWSModel.cs" />
+    <Compile Include="Models\CustomModels\1AWSModel.cs" />
+    <Compile Include="Models\CustomModels\2AWSModel.cs" />
+    <Compile Include="Models\CustomModels\3AWSModel.cs" />
+    <Compile Include="Models\CustomModels\4AWSModel.cs" />
+    <Compile Include="Models\CustomModels\5AWSModel.cs" />
+    <Compile Include="Models\CustomModels\6AWSModel.cs" />
+    <Compile Include="Models\CustomModels\7AWSModel.cs" />
+    <Compile Include="Models\CustomModels\SparkPostModel.cs" />
+    <Compile Include="Models\CustomModels\SparkPostMetaModel.cs" />
+    <Compile Include="Controllers\APIController.cs" />
+    <Compile Include="Controllers\1APIController.cs" />
+    <Compile Include="Controllers\2APIController.cs" />
+    <Compile Include="Controllers\3APIController.cs" />
+    <Compile Include="Controllers\4APIController.cs" />
+    <Compile Include="Controllers\5APIController.cs" />
+    <Compile Include="Controllers\6APIController.cs" />
+    <Compile Include="Controllers\7APIController.cs" />
+    <Compile Include="Controllers\8APIController.cs" />
+    <Compile Include="Controllers\9APIController.cs" />
+    <Compile Include="Controllers\10APIController.cs" />
+    <Compile Include="Controllers\11APIController.cs" />
+    <Compile Include="Controllers\12APIController.cs" />
+    <Compile Include="Controllers\13APIController.cs" />
+    <Compile Include="Controllers\14APIController.cs" />
+    <Compile Include="Controllers\15APIController.cs" />
+    <Compile Include="Controllers\16APIController.cs" />
+    <Compile Include="Controllers\17APIController.cs" />
+    <Compile Include="Controllers\18APIController.cs" />
+    <Compile Include="Controllers\19APIController.cs" />
+    <Compile Include="Controllers\20APIController.cs" />
+    <Compile Include="Controllers\21APIController.cs" />
+    <Compile Include="Controllers\22APIController.cs" />
+    <Compile Include="Controllers\23APIController.cs" />
+    <Compile Include="Controllers\24APIController.cs" />
+    <Compile Include="Controllers\25APIController.cs" />
+    <Compile Include="Controllers\26APIController.cs" />
+    <Compile Include="Controllers\27APIController.cs" />
+    <Compile Include="Controllers\28APIController.cs" />
+    <Compile Include="Controllers\29APIController.cs" />
+    <Compile Include="Controllers\30APIController.cs" />
+    <Compile Include="Controllers\31APIController.cs" />
+    <Compile Include="Controllers\32APIController.cs" />
+    <Compile Include="Controllers\33APIController.cs" />
+    <Compile Include="Controllers\34APIController.cs" />
+    <Compile Include="Controllers\35APIController.cs" />
+    <Compile Include="Controllers\36APIController.cs" />
+    <Compile Include="Controllers\37APIController.cs" />
+    <Compile Include="Controllers\38APIController.cs" />
+    <Compile Include="Controllers\39APIController.cs" />
+    <Compile Include="Controllers\40APIController.cs" />
+    <Compile Include="Controllers\41APIController.cs" />
+    <Compile Include="Controllers\42APIController.cs" />
+    <Compile Include="Controllers\43APIController.cs" />
+    <Compile Include="Controllers\44APIController.cs" />
+    <Compile Include="Controllers\45APIController.cs" />
+    <Compile Include="Controllers\46APIController.cs" />
+    <Compile Include="Controllers\47APIController.cs" />
+    <Compile Include="Controllers\48APIController.cs" />
+    <Compile Include="Controllers\49APIController.cs" />
+    <Compile Include="Controllers\50APIController.cs" />
+    <Compile Include="Controllers\51APIController.cs" />
+    <Compile Include="Controllers\52APIController.cs" />
+    <Compile Include="Controllers\53APIController.cs" />
+    <Compile Include="Controllers\54APIController.cs" />
+    <Compile Include="Controllers\55APIController.cs" />
+    <Compile Include="Controllers\56APIController.cs" />
+    <Compile Include="Controllers\57APIController.cs" />
+    <Compile Include="Controllers\58APIController.cs" />
+    <Compile Include="Controllers\59APIController.cs" />
+    <Compile Include="Controllers\60APIController.cs" />
+    <Compile Include="Controllers\61APIController.cs" />
+    <Compile Include="Controllers\62APIController.cs" />
+    <Compile Include="Controllers\63APIController.cs" />
+    <Compile Include="Controllers\64APIController.cs" />
+    <Compile Include="Controllers\65APIController.cs" />
+    <Compile Include="Controllers\66APIController.cs" />
+    <Compile Include="ControllersOneView\GatewayController.cs" />
+    <Compile Include="ControllersOneView\MapController.cs" />
+    <Compile Include="ControllersOneView\BluetoothController.cs" />
+    <Compile Include="ControllersOneView\CustomController.cs" />
+    <Compile Include="ControllersOneView\SetupController.cs" />
+    <Compile Include="Controllers\HelpController.cs" />
+    <Compile Include="Controllers\RuleController.cs" />
+    <Compile Include="ControllersOneView\RetailController.cs" />
+    <Compile Include="Controllers\AutoRefreshController.cs" />
+    <Compile Include="Controllers\AWSController.cs" />
+    <Compile Include="Controllers\EventsController.cs" />
+    <Compile Include="Controllers\ChartController.cs" />
+    <Compile Include="ControllersOneView\ExportController.cs" />
+    <Compile Include="Controllers\CheckoutController.cs" />
+    <Compile Include="ControllersOneView\NetworkController.cs" />
+    <Compile Include="ControllersOneView\OverviewController.cs" />
+    <Compile Include="ControllersOneView\SettingsController.cs" />
+    <Compile Include="Controllers\SparkPostController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\67APIController.cs" />
+    <Compile Include="Controllers\CSNetController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\EmailController.cs" />
+    <Compile Include="Controllers\GaugeController.cs" />
+    <Compile Include="Controllers\GenericController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LookupController.cs" />
+    <Compile Include="Controllers\NotificationController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
+    <Compile Include="Controllers\SensorController.cs" />
+    <Compile Include="Controllers\SubscriptionController.cs" />
+    <Compile Include="Controllers\TestingController.cs" />
+    <Compile Include="ControllerBase\AccountControllerBase.cs" />
+    <Compile Include="ControllerBase\OverviewControllerBase.cs" />
+    <Compile Include="ControllerBase\EquipmentControllerBase.cs" />
+    <Compile Include="ControllerBase\NotificationControllerBase.cs" />
+    <Compile Include="ControllerBase\SensorControllerBase.cs" />
+    <Compile Include="ControllerBase\CSNetControllerBase.cs" />
+    <Compile Include="ControllerBase\HomeControllerBase.cs" />
+    <Compile Include="Binder\AccountCustomBinder.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
